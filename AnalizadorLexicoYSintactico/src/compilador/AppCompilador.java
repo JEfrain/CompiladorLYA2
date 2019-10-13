@@ -28,7 +28,7 @@ public class AppCompilador extends JFrame implements ActionListener{
 	private JTextArea areaTexto;
 	private JList<String> tokens;
 	private JTabbedPane documentos,consola,tabla;
-	private String [] titulos ={"Tipo","Nombre","Valor"};
+	private String [] titulos ={"Tipo","Nombre","Valor","Alcance","Posicion"};
 	DefaultTableModel modelo = new DefaultTableModel(new Object[0][0],titulos);
 	private JTable mitabla = new JTable(modelo);
 	private JButton btnAnalizar;
@@ -39,6 +39,7 @@ public class AppCompilador extends JFrame implements ActionListener{
 		}*/
 		new AppCompilador();
 	}
+	
 	public AppCompilador() {
 		super("Analizador Lexico y Sintáctico");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -49,6 +50,7 @@ public class AppCompilador extends JFrame implements ActionListener{
 		creaInterFaz();
 		setVisible(true);
 	}
+	
 	private void creaInterFaz() {
 		barraMenu = new JMenuBar();
 		setJMenuBar(barraMenu);
@@ -109,10 +111,10 @@ public class AppCompilador extends JFrame implements ActionListener{
 				tokens.setListData(analisador.getmistokens().toArray( new String [0]));
 				modelo = new DefaultTableModel(new Object[0][0],titulos);
 				mitabla.setModel(modelo);
-				for (int i = analisador.getIdenti().size()-1; i >=0; i--) {
+				for (int i = 0; i <analisador.getIdenti().size(); i++) {
 					Identificador id = analisador.getIdenti().get(i);
 					if(!id.tipo.equals("")) {
-						Object datostabla[]= {id.tipo,id.nombre,id.valor};
+						Object datostabla[]= {id.tipo,id.nombre,id.valor, id.Alcance, id.Posicion};
 						modelo.addRow(datostabla);
 					}
 				}

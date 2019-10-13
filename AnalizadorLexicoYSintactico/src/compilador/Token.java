@@ -12,6 +12,9 @@ public class Token
 	final static int CONSTANTE=6;
 	final static int IDENTIFICADOR=7;
 	final static int CLASE=8;
+	final static int BOOLEAN=9;
+	final static int FLOAT=10;
+	
 	private final static String types[]= 
 	{
 	"Modificador",
@@ -22,7 +25,9 @@ public class Token
 	"Operador aritmetico",
 	"Constante",
 	"Identificador",
-	"Declaracion de clase"
+	"Declaracion de clase",
+	"Booleano",
+	"Float"
 	};
 	private String valor;
 	private int linea;
@@ -46,4 +51,5 @@ public class Token
 	public String toString() {
 		return "Token encontrado.... " +types[tipo]+": "+valor;
 	}
+	
 }
