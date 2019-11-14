@@ -49,7 +49,7 @@ public class Token
 		this.valor = valor;
 	}
 	public String toString() {
-		return "Token encontrado.... " +types[tipo]+": "+valor;
+		return "Token: " +types[tipo]+": "+valor;
 	}
 	
 }
