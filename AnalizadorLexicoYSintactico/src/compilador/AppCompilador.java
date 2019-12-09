@@ -29,10 +29,13 @@ public class AppCompilador extends JFrame implements ActionListener{
 	private JFileChooser ventanaArchivos;
 	private File archivo;
 	private JTextArea areaTexto;
+	private JFrame ventanacodigo;
 	private JList<String> tokens;
 	private JTabbedPane documentos,consola,tabla, cuadruplos;
 	private String [] titulos ={"Tipo","Nombre","Valor","Alcance","Posicion"};
 	private String [] titulos2 = {"Operador","Operando1","Operando2","Resultado"};
+	private JList<String> codigo = new JList<String>();;
+
 	
 	DefaultTableModel modelo = new DefaultTableModel(new Object[0][0],titulos);
 	DefaultTableModel modelo2 = new DefaultTableModel(new  Object[0][0],titulos2);
@@ -69,6 +72,10 @@ public class AppCompilador extends JFrame implements ActionListener{
 		
 		menuCompilar = new JMenu("Aqui se compila");
 		menuCompilar.setIcon(new ImageIcon("play.png"));
+		
+		ventanacodigo = new JFrame("Codigo Objeto");
+		ventanacodigo.setSize(600, 600);
+		ventanacodigo.setVisible(true);
 		
 		//MenuAnalisis =  new JMenu("Analisis");
 		//MenuAnalisis.setIcon(new ImageIcon("analisis.png"));
@@ -130,6 +137,11 @@ public class AppCompilador extends JFrame implements ActionListener{
 		add(cuadruplos);
 		//documentos.add("Analizar", btnAnalizar);
 
+		
+		ventanacodigo.add(codigo);
+		
+		
+		
 	}
 	
 	@Override
@@ -139,6 +151,7 @@ public class AppCompilador extends JFrame implements ActionListener{
 			if(guardar()){
 				Analisis analisador = new Analisis(archivo.getAbsolutePath());
 				tokens.setListData(analisador.getmistokens().toArray( new String [0]));
+				codigo.setListData(analisador.getTabla3().toArray( new String [0] ));
 				modelo = new DefaultTableModel(new Object[0][0],titulos);
 				modelo2 = new DefaultTableModel(new Object[0][0],titulos2);
 				
